@@ -6,7 +6,23 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-8">
-            <h1>{{ profile.user.username }}'s Profile</h1>
+            <h1>
+                {{ profile.user.username }}'s Profile
+            </h1>
+            <br/><br/>
+
+                {% if chirps %}
+                    {% for chirp in chirps %}
+                        <div class="alert alert-dark" role="alert">
+                            {{chirp.body}}<br/>
+                            <small class="text-muted">
+                            ({{ chirp.created_at }}) By
+                            @{{ chirp.user.username }}
+                            </small>
+                        </div>      
+
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <div class="col-4">
@@ -21,6 +37,8 @@
                       </p>
                     </div>
                   </div>
+
+                  <br/><br/>
 
                   <div class="card">
                     <h5 class="card-header">Followed By</h5>

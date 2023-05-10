@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
  
-class Clink(models.Model):
+class Chirp(models.Model):
     user = models.ForeignKey(
-        User, related_name="clinks",
+        User, related_name="chirps",
         on_delete=models.DO_NOTHING
     )
 
