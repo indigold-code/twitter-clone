@@ -11,6 +11,12 @@ class Chirp(models.Model):
 
     body = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now=True)
+    favorites = models.ManyToManyField(User, related_name='chirp_like', blank=True)
+    
+    def total_faves(self):
+        total = 0
+        total = self.favorites.count()
+        return total
 
     def __str__(self):
         return(
@@ -26,7 +32,7 @@ class Profile(models.Model):
         symmetrical=False,
         blank=True)
     date_modified = models.DateTimeField(User, auto_now=True)
-
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return self.user.username 

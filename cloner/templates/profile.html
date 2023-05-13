@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
 
 {% block content %}
+<title>My Profile</title>
+
 {% if profile %}
 
     <div class="container text-center">
@@ -14,18 +19,40 @@
                 {% if chirps %}
                     {% for chirp in chirps %}
                         <div class="alert alert-dark" role="alert">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                {% if profile.profile_pic %}
+                <img src="{{ profile.profile_pic.url }}" width="50" height="50" 
+                class="rounded-circle">
+                {% else %}
+                <img src="{% static 'images/default_profile_pic.png' %}" width="50" height="50" class="rounded-circle">
+
+                {% endif %}
+            </div>
+
+            <div class="col-10">
                             {{chirp.body}}<br/>
                             <small class="text-muted">
                             ({{ chirp.created_at }}) By
                             @{{ chirp.user.username }}
-                            </small>
-                        </div>      
+                            </small> <button type="button" class="btn btn-outline-success" id="buzzy">Success</button>
+            </div>
+         </div>
+    </div>  
+    </div>
+    
 
                     {% endfor %}
                 {% endif %}
             </div>
 
             <div class="col-4">
+                <br/><br/><br/>
+                {% if profile.profile_pic %}
+                <img src="{{ profile.profile_pic.url }}" width="200" height="200" class="rounded-circle">
+                {% endif %}
+                <br/><br/>
                 <div class="card">
                     <h5 class="card-header">Follows</h5>
                     <div class="card-body">
@@ -67,7 +94,14 @@
             </form>
 
             <br/> 
-            </div>
+            {% if request.user.id == profile.user.id %}
+                <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">
+                    Update Profile
+                </a>
+            {% endif %}
+        
+        
+        </div>
         </div>
     </div>
 

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
-
+<title>Cloner Home</title>
 <div class="container text-center">
   <div class="row">
       <div class="col-8">
@@ -11,11 +13,35 @@
     <br/>
   {% for chirp in chirps %}
     <div class="alert alert-dark" role="alert">
+      <div class="container">
+        <div class="row">
+            <div class="col-1">
+                {% if chirp.user.profile.profile_pic %}
+                <img src="{{ chirp.user.profile.profile_pic.url }}" width="50" height="50" 
+                class="rounded-circle">
+                {% else %}
+                <img src="{% static 'images/default_profile_pic.png' %}" width="50" height="50" class="rounded-circle">
+
+                {% endif %}
+
+            </div>
+        
+      <div class="col-10">
         {{chirp.body}}<br/>
         <small class="text-muted">
           ({{ chirp.created_at }}) By
           @{{ chirp.user.username }}
+
+          {% if user in chirp.favorites.all %}
+          {{ chirp.total_faves }} favorites <a href="{% url 'chirp_fave' chirp.id %}"><button class="btn btn-secondary"><i class="fas fa-star" style="color: goldenrod;"></i></button></a>
+          {% else %}
+          {{ chirp.total_faves }} favorites <a href="{% url 'chirp_fave' chirp.id %}"><button class="btn btn-secondary"><i class="far fa-star" style="color: goldenrod;"></i></button></a>
+          {% endif %}
+
         </small>
+      </div>
+    </div>
+    </div>
         <br/><br/>
       </div>      
 

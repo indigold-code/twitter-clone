@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>update account</title>
+
+
+<div class="col-md-6 offset-md-3">
+<h1>Update Profile</h1>
+<br/>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <br/>
+    <small text-muted>(please upload photos cropped at 1:1 for best quality)</small>
+    {{ profile_form.as_p }}
+    
+    <br/><br/>
+    <button type="submit" class="btn btn-secondary">Update
+    </button>
+</form>
+
+</div>
+
+{% endblock %}
