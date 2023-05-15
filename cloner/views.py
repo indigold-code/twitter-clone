@@ -137,9 +137,20 @@ def favorite_chirp(request, pk):
         else:
             chirp.favorites.add(request.user)
             
-        return redirect('home')
-
+        return redirect(request.META.get("HTTP_REFERER")) 
 
     else: 
         messages.success(request, ("You Must Be Logged In To View That Page"))
+        return redirect('home')
+    
+
+
+
+def show_chirp(request, pk):
+    chirp = get_object_or_404(Chirp, id=pk)
+    if chirp:
+        return render(request, 'show_chirp.html', {'chirp':chirp})
+
+    else:
+        messages.success(request, ("That Chirp Doesn't Exist"))
         return redirect('home')

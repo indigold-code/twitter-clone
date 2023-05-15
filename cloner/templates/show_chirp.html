@@ -7,11 +7,9 @@
 <div class="container text-center">
   <div class="row">
       <div class="col-8">
-        <h1>
-          Chirps!
-        </h1>
+        
     <br/>
-  {% for chirp in chirps %}
+  
     <div class="alert alert-dark" role="alert">
       <div class="container">
         <div class="row">
@@ -31,15 +29,12 @@
         <small class="text-muted">
           ({{ chirp.created_at }}) By
           @{{ chirp.user.username }}
-           - {{ chirp.total_faves }} &nbsp;&nbsp;
+           - {{ chirp.total_faves }} favorites 
           {% if user in chirp.favorites.all %}
           <a href="{% url 'chirp_fave' chirp.id %}"><button class="btn btn-secondary"><i class="fas fa-star" style="color: goldenrod;"></i></button></a>
           {% else %}
           <a href="{% url 'chirp_fave' chirp.id %}"><button class="btn btn-secondary"><i class="far fa-star" style="color: goldenrod;"></i></button></a>
           {% endif %}
-          &nbsp;&nbsp;
-<a href="{% url 'show_chirp' chirp.id %}"><i class="fas fa-retweet" style="color: grey;"></i></a>
-          
 
         </small>
       </div>
@@ -48,7 +43,7 @@
         <br/><br/>
       </div>      
 
-  {% endfor %}
+ 
 
           
 </div>
@@ -58,13 +53,13 @@
             <br/><br/><br/>
 
 
-{% if form %}
+<!-- {% if form %}
 <form method=POST>
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" class="btn btn-secondary">Chirp!</button>
 </form>
-{% endif %}
+{% endif %} -->
 </div>
 
 
