@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloner',
-    'django_bootstrap_icons',
+
 ]
 
 MIDDLEWARE = [

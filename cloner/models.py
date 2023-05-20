@@ -33,6 +33,9 @@ class Profile(models.Model):
         blank=True)
     date_modified = models.DateTimeField(User, auto_now=True)
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/")
+    profile_bio = models.CharField(null=True, blank=True, max_length=100)
+
+
 
     def __str__(self):
         return self.user.username 
